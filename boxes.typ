@@ -68,9 +68,7 @@
   let inset = 1pt;
   let clip = true;
 
-  let border = (
-    stroke: 2pt + color,
-    radius: 3pt,
+  let common-settings = (
     inset: 1pt,
     clip: true,
   );
@@ -78,7 +76,8 @@
   if header == none {
     block(
       block(body, inset: 0.5em, width: 100%),
-      ..border
+      stroke: (left: 3pt + color),
+      ..common-settings,
     )
   } else {
     block(
@@ -86,7 +85,9 @@
         box(header, fill: color.lighten(50%), inset: 0.5em, width: 100%),
         block(body, inset: 0.5em, width: 100%)
       ),
-      ..border,
+      stroke: 2pt + color,
+      radius: 3pt,
+      ..common-settings,
     )
   }
 }
