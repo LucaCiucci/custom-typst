@@ -136,7 +136,7 @@
   if title == [] {
     n => callout-box(
       color: color,
-      [#(if header-short == none { header } else { header-short }) #n: body],
+      [#(if header-short == none { header } else { header-short }) #n: #body],
     )
   } else {
     n => callout-box(
