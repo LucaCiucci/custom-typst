@@ -318,6 +318,58 @@
   kind: "algorithm",
 )
 
+A number of predefined callouts are defined, the usage is the following:
+#table(columns: (auto, auto, auto))[
+  Inline callout
+][
+  ```typ
+  #note[Short text]
+  ```
+][
+  #note[Short text]
+][
+  Block, callout
+][
+  ```typ
+  #note(title: [])[
+    #lorem(10)
+  ]
+  ```
+][
+  #note(title: [])[
+    #lorem(10)
+  ]
+][
+  Block callout with title
+][
+  ```typ
+  #note(title: [Title])[
+    #lorem(10)
+  ]
+  ```
+][
+  #note(title: [Title])[
+    #lorem(10)
+  ]
+][
+  Reference a callout
+][
+  ```typ
+  #note(
+    title: [Title],
+    label: <some-note>,
+  )[
+    #lorem(10)
+  ]
+  Ref: @some-note
+  ```
+][
+  #note(title: [Title])[
+    #lorem(10)
+  ]
+  Ref: @some-note
+]
+
 #let cells = {
   let cells = ();
 
