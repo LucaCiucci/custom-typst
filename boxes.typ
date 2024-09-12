@@ -130,7 +130,7 @@
 = Predefined Callouts
 
 #let custom-callout(
-  title: [],
+  title: none,
   label: none,
   body,
   color: gray,
@@ -139,14 +139,18 @@
   supplement: [Call],
   kind: "custom-theorem",
 ) = custom-figure(
-  if title == [] {
+  if title == none {
     n => callout-box(
       color: color,
       [#(if header-short == none { header } else { header-short }) #n: #body],
     )
   } else {
     n => callout-box(
-      header: [#header #n: #title],
+      header: if title == [] or title == "" {
+        [#header #n]
+      } else {
+        [#header #n: #title]
+      },
       color: color,
       body,
     )
@@ -309,7 +313,7 @@
 
 #let listing = custom-callout.with(
   color: rgb("#2c3e50"),
-  header: [`</>` *Listing*],
+  header: [#text("</>", font: "FreeMono") *Listing*],
   supplement: [listing.],
   kind: "algorithm",
 )
