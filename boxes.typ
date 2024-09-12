@@ -69,7 +69,7 @@
   let clip = true;
 
   let common-settings = (
-    inset: 1pt,
+    inset: 0pt,
     clip: true,
   );
 
@@ -85,7 +85,12 @@
         box(header, fill: color.lighten(50%), inset: 0.5em, width: 100%),
         block(body, inset: 0.5em, width: 100%)
       ),
-      stroke: 2pt + color,
+      stroke: (
+        left: 2pt + color,
+        top: 1pt + color,
+        right: 1pt + color,
+        bottom: 1pt + color,
+      ),
       radius: 3pt,
       ..common-settings,
     )
@@ -297,8 +302,15 @@
 
 #let algorithm = custom-callout.with(
   color: rgb("#2c3e50"),
-  header: [ *algorithm*],
+  header: [#emoji.gear *algorithm*],
   supplement: [algo.],
+  kind: "algorithm",
+)
+
+#let listing = custom-callout.with(
+  color: rgb("#2c3e50"),
+  header: [`</>` *Listing*],
+  supplement: [listing.],
   kind: "algorithm",
 )
 
@@ -327,6 +339,7 @@
     ("danger", danger),
     ("quote", quote),
     ("algorithm", algorithm),
+    ("listing", listing),
   )
 
   for (name, f) in functions {
@@ -348,7 +361,7 @@
   ..cells
 )
 
-#algorithm(title: [Some algorithm])[
+#listing(title: [Some algorithm])[
   ```rs
   type float = f32;
   fn ciao() -> real {
