@@ -259,7 +259,7 @@
 )
 
 #let warning = custom-callout.with(
-  color: rgb("#ff4136"),
+  color: orange,
   header: [#emoji.warning *Warning*],
   supplement: [Warning],
   kind: "warning",
