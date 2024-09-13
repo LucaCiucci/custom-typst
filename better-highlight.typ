@@ -99,8 +99,8 @@ Exported functions:\
   let url = "https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&code=" + code;
 
   box(width: 100%)[
-    #place(top + right, box(link(url, "Run: " + emoji.rocket), stroke: gray, radius: 0.5em, inset: 0.5em, fill: gray.transparentize(50%)))
     #it
+    #place(top + right, box(link(url, "Run: " + emoji.rocket), stroke: gray, radius: 0.5em, inset: 0.5em, fill: gray.transparentize(50%)))
   ]
 }
 
@@ -113,6 +113,7 @@ Exported functions:\
     if code.starts-with("run-main") {
       let code = code.slice(8);
       let code = code.trim();
+      // set text(size: 1.125em) // TODO see https://github.com/typst/typst/issues/1331
       rust-playground(main: true, raw(code, lang: "rs", block: true))
     } else if code.starts-with("run") {
       let code = code.slice(3);
