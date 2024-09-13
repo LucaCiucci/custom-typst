@@ -107,6 +107,37 @@ Exported functions:\
 #let better-highlight(it) = {
   show raw.where(lang: "rs"): rust-links
   show raw.where(lang: "rust"): rust-links
+
+  show raw.where(lang: "rs"): it => {
+    let code = it.text;
+    if code.starts-with("run-main") {
+      let code = code.slice(8);
+      let code = code.trim();
+      rust-playground(main: true, raw(code, lang: "rs", block: true))
+    } else if code.starts-with("run") {
+      let code = code.slice(3);
+      let code = code.trim();
+      rust-playground(main: false, raw(code, lang: "rs", block: true))
+    } else {
+      it
+    }
+  }
+
+  show raw.where(lang: "rust"): it => {
+    let code = it.text;
+    if code.starts-with("run-main") {
+      let code = code.slice(8);
+      let code = code.trim();
+      rust-playground(main: true, raw(code, lang: "rs", block: true))
+    } else if code.starts-with("run") {
+      let code = code.slice(3);
+      let code = code.trim();
+      rust-playground(main: false, raw(code, lang: "rs", block: true))
+    } else {
+      it
+    }
+  }
+
   it
 }
 
@@ -118,15 +149,13 @@ fn ciao() {
 }
 ```
 
-#rust-playground(main: true, ```rs
-fn ciao() -> i32 {
+```rs run
+fn ciao() {
     return 42;
 }
-println!("Answer: {}", ciao());
-```)
+```
 
-#show: rust-playground.with(main: true)
-```rs
+```rs run-main
 fn ciao() {
     return 42;
 }
