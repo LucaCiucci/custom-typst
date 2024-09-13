@@ -1,4 +1,16 @@
 
+#import "@preview/jogs:0.2.3": *
+#let js-code = ```js
+function encode_uri_component(value) {
+  //return value;
+  return encodeURIComponent(value);
+}
+```
+#js-code
+#let js = compile-js(js-code)
+
+Exported functions:\
+#list-global-property(js)
 
 #let rust-links(it) = {
   //show link: it => link("aaa")
@@ -64,7 +76,32 @@
   show "use": it => link("https://doc.rust-lang.org/std/keyword.use.html", "use")
   show "where": it => link("https://doc.rust-lang.org/std/keyword.where.html", "where")
   show "while": it => link("https://doc.rust-lang.org/std/keyword.while.html", "while")
+
   it
+}
+
+#let rust-playground(
+  main: false,
+  it,
+) = {
+  let code = if main {
+    "fn main() {\n    " + it.text.replace("\n", "\n    ") + "\n}"
+  } else {
+    it.text
+  }
+
+  let code = call-js-function(
+    js,
+    "encode_uri_component",
+    code,
+  );
+
+  let url = "https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&code=" + code;
+
+  box(width: 100%)[
+    #place(top + right, box(link(url, "Run: " + emoji.rocket), stroke: gray, radius: 0.5em, inset: 0.5em, fill: gray.transparentize(50%)))
+    #it
+  ]
 }
 
 #let better-highlight(it) = {
@@ -76,7 +113,21 @@
 #show: better-highlight
 
 ```rs
-fn ciao() => {
-  return 42;
+fn ciao() {
+    return 42;
+}
+```
+
+#rust-playground(main: true, ```rs
+fn ciao() -> i32 {
+    return 42;
+}
+println!("Answer: {}", ciao());
+```)
+
+#show: rust-playground.with(main: true)
+```rs
+fn ciao() {
+    return 42;
 }
 ```
