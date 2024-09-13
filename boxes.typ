@@ -190,7 +190,8 @@
 )
 
 #let info = custom-callout.with(
-  color: rgb("#2ecc40"),
+  //color: rgb("#2ecc40"),
+  color: yellow.darken(10%),
   header: [🛈 *Info*],
   supplement: [info],
   kind: "info",
