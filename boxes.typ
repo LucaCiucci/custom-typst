@@ -313,7 +313,7 @@
 
 #let listing = custom-callout.with(
   color: rgb("#2c3e50"),
-  header: [#text("</>", font: "FreeMono") *Listing*],
+  header: [/*#text("</>", font: "FreeMono")*/*#text(text("<", blue.darken(30%)) + "/" + text(">"), font: "DejaVu Sans Mono")* *Listing*],
   supplement: [listing.],
   kind: "algorithm",
 )
