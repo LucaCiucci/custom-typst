@@ -321,6 +321,13 @@
   kind: "algorithm",
 )
 
+#let trick = custom-callout.with(
+  color: yellow.darken(30%),
+  header: [#emoji.wand *trick*],
+  supplement: [trick],
+  kind: "trick",
+)
+
 A number of predefined callouts are defined, the usage is the following:
 #table(columns: (auto, auto, auto))[
   Inline callout
@@ -399,6 +406,7 @@ A number of predefined callouts are defined, the usage is the following:
     ("quote", quote),
     ("algorithm", algorithm),
     ("listing", listing),
+    ("trick", trick),
   )
 
   for (name, f) in functions {
