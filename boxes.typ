@@ -169,6 +169,14 @@
   kind: "note",
 )
 
+#let idea = custom-callout.with(
+  //color: rgb("#2ecc40"),
+  color: green,
+  header: [#emoji.lightbulb *Idea*],
+  supplement: [idea],
+  kind: "note",
+)
+
 #let example = custom-callout.with(
   color: gray,
   header: [🕮 *example*],
@@ -385,6 +393,7 @@ A number of predefined callouts are defined, the usage is the following:
 
   let functions = (
     ("note", note),
+    ("idea", idea),
     ("example", example),
     ("question", question),
     ("exercise", exercise),
