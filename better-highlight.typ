@@ -82,12 +82,33 @@ Exported functions:\
 
 #let rust-playground(
   main: false,
+  code: none,
   it,
 ) = {
-  let code = if main {
-    "fn main() {\n    " + it.text.replace("\n", "\n    ") + "\n}"
-  } else {
+  let code = if code == none {
     it.text
+  } else {
+    code
+  };
+
+  // fix hidden lines
+  let lines = code.trim().split("\n");
+  let code = "";
+  for line in lines {
+    if code != "" {
+      code += "\n";
+    }
+    if line.starts-with("# ") {
+      code += line.slice(2);
+    } else {
+      code += line;
+    }
+  }
+
+  let code = if main {
+    "fn main() {\n    " + code.replace("\n", "\n    ") + "\n}"
+  } else {
+    code
   }
 
   let code = call-js-function(
@@ -108,32 +129,30 @@ Exported functions:\
   show raw.where(lang: "rs"): rust-links
   show raw.where(lang: "rust"): rust-links
 
+  let remove-hidden-lines(code) = {
+    let lines = code.trim().split("\n");
+    let code = "";
+    for line in lines {
+      if line.starts-with("# ") {
+        continue;
+      }
+      if code != "" {
+          code += "\n";
+        }
+        code += line;
+    }
+    code
+  }
+
   show raw.where(lang: "rs"): it => {
     let code = it.text;
     if code.starts-with("run-main") {
       let code = code.slice(8);
-      let code = code.trim();
       // set text(size: 1.125em) // TODO see https://github.com/typst/typst/issues/1331
-      rust-playground(main: true, raw(code, lang: "rs", block: true))
+      rust-playground(main: true, code: code, raw(remove-hidden-lines(code), lang: "rs", block: true))
     } else if code.starts-with("run") {
       let code = code.slice(3);
-      let code = code.trim();
-      rust-playground(main: false, raw(code, lang: "rs", block: true))
-    } else {
-      it
-    }
-  }
-
-  show raw.where(lang: "rust"): it => {
-    let code = it.text;
-    if code.starts-with("run-main") {
-      let code = code.slice(8);
-      let code = code.trim();
-      rust-playground(main: true, raw(code, lang: "rs", block: true))
-    } else if code.starts-with("run") {
-      let code = code.slice(3);
-      let code = code.trim();
-      rust-playground(main: false, raw(code, lang: "rs", block: true))
+      rust-playground(main: false, code: code, raw(remove-hidden-lines(code), lang: "rs", block: true))
     } else {
       it
     }
