@@ -162,7 +162,8 @@
 
 
 #let note = custom-callout.with(
-  color: rgb("#2ecc40"),
+  //color: rgb("#2ecc40"),
+  color: yellow.darken(10%),
   header: [#emoji.pencil *Note*],
   supplement: [Note],
   kind: "note",
@@ -191,7 +192,8 @@
 
 #let info = custom-callout.with(
   //color: rgb("#2ecc40"),
-  color: yellow.darken(10%),
+  //color: yellow.darken(10%),
+  color: rgb("#2ecc40"),
   header: [🛈 *Info*],
   supplement: [info],
   kind: "info",
