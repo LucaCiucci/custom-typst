@@ -224,7 +224,7 @@
 
 #let observation = custom-callout.with(
   color: rgb("#ff851b"),
-  header: [#sym.square *proposition*],
+  header: [#sym.square *observation*],
   supplement: [obs.],
   kind: "theorem",
 )
