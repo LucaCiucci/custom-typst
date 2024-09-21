@@ -139,6 +139,10 @@ Exported functions:\
       if code != "" {
           code += "\n";
         }
+        // half the leading spaces to make the code more readable on pdf
+        // by reducing the indentation from 4 to 2 spaces
+        let n_leading_spaces = line.position(line.trim());
+        let line = "  " * calc.div-euclid(n_leading_spaces, 4) + " " * calc.rem-euclid(n_leading_spaces, 4) + line.trim();
         code += line;
     }
     code
