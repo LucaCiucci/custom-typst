@@ -53,9 +53,13 @@
     panic()
   }
 
-  show figure.where(kind: kind): f => f.counter.display()
+  show figure.where(kind: kind): it => it.counter.display()
+  let displayed-counter = box([
+    #figure([], kind: kind, supplement: supplement)
+    #label
+  ])
 
-  body-func([#figure([], kind: kind, supplement: supplement) #label])
+  body-func(displayed-counter)
 }
 
 #let callout-box(
