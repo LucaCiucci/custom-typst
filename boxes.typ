@@ -49,7 +49,7 @@
   supplement: [Custom Figure],
   label: [],
 ) = {
-  if type(body-func) != "function" {
+  if type(body-func) != function {
     panic()
   }
 
@@ -173,6 +173,22 @@
   kind: "note",
 )
 
+#let detail = custom-callout.with(
+  //color: rgb("#2ecc40"),
+  color: gray,
+  header: [#emoji.pencil *Detail*],
+  supplement: [detail],
+  kind: "note",
+)
+
+#let tip = custom-callout.with(
+  //color: rgb("#2ecc40"),
+  color: yellow,
+  header: [#emoji.lightbulb *Tip*],
+  supplement: [tip],
+  kind: "note",
+)
+
 #let idea = custom-callout.with(
   //color: rgb("#2ecc40"),
   color: green,
@@ -199,6 +215,13 @@
   color: rgb("#0074d9"),
   header: [#emoji.pencil *exercise*],
   supplement: [exercise],
+  kind: "exercise",
+)
+
+#let solution = custom-callout.with(
+  color: rgb("#0074d9"),
+  header: [#emoji.pencil *solution*],
+  supplement: [solution],
   kind: "exercise",
 )
 
