@@ -241,6 +241,13 @@
   kind: "todo",
 )
 
+#let TBW = custom-callout.with(
+  color: rgb("#ba55d3"),
+  header: [#emoji.square *TBW*],
+  supplement: [TBW],
+  kind: "tbw",
+)
+
 // TODO maybe unify with todo using a "done" parameter
 // this can be done by redirecting the other args (..args)
 #let todo-done = custom-callout.with(
