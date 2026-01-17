@@ -17,7 +17,9 @@
     h1
   }
 
-  show figure.where(kind: "note"): set figure(numbering: section-based-numbering)
+  show figure.where(
+    //kind: "note"
+  ): set figure(numbering: section-based-numbering)
 
   show link: link => text(link, rgb("#0000CD").darken(50%))
   show ref: ref => text(ref, rgb("#0000CD").darken(50%))
