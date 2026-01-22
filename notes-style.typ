@@ -1,5 +1,15 @@
 
 
+#let maybe-ref(target) = context {
+  let q = query(target);
+  let found = q.len() > 0;
+  if found {
+    ref(target)
+  } else {
+    target
+  }
+}
+
 #let common-styles(it) = {
   let section-based-numbering(c) = {
     let max-displayed-level = 2
@@ -24,6 +34,8 @@
   show link: link => text(link, rgb("#0000CD").darken(50%))
   show ref: ref => text(ref, rgb("#0000CD").darken(50%))
 
+  show ref.where(supplement: [?]): it => maybe-ref(it.target)
+
   it
 }
 
@@ -31,6 +43,7 @@
 
 #let notes(
   title: none,
+  label: none,
   it
 ) = {
   doc-level.update(it => it + 1)
@@ -52,7 +65,7 @@
     align(center, text(weight: "bold", size: 1.5em, title))
     it
   } else if title != none {
-    heading(title)
+    [#heading(title) #label]
     set heading(offset: doc-level.get() - 1)
     it
   } else {

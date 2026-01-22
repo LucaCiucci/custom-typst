@@ -67,6 +67,8 @@
   header: none,
   color: gray,
 ) = {
+  // TODO https://forum.typst.app/t/are-there-math-theorem-packages-that-avoid-an-empty-border-when-the-page-breaks-after-a-block-starts/4003/15
+
   let stroke = 2pt + color;
   let radius = 1pt;
   let inset = 1pt;
