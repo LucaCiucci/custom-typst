@@ -1,4 +1,10 @@
 
+#import "@preview/in-dexter:0.7.2": index as in-index, make-index
+
+#let index(it) = {
+  in-index(it)
+  it
+}
 
 #let maybe-ref(target) = context {
   let q = query(target);
@@ -79,6 +85,14 @@
   } else {
     it
   }
+
+  //let it = context if doc-level.get() == 1 {
+  //  it
+  //  text(size: 1.5em, weight: "bold")[Index]
+  //  make-index()
+  //} else {
+  //  it
+  //}
 
   it
 

@@ -144,22 +144,30 @@
   header-short: none,
   supplement: [Call],
   kind: "custom-theorem",
+  author: none,
 ) = custom-figure(
-  if title == none {
-    n => callout-box(
-      color: color,
-      [#(if header-short == none { header } else { header-short }) #n: #body],
-    )
-  } else {
-    n => callout-box(
-      header: if title == [] or title == "" {
-        [#header #n]
-      } else {
-        [#header #n: #title]
-      },
-      color: color,
-      body,
-    )
+  {
+    let body = if author != none {
+      [#body --- #author]
+    } else {
+      body
+    };
+    if title == none {
+      n => callout-box(
+        color: color,
+        [#(if header-short == none { header } else { header-short }) #n: #body],
+      )
+    } else {
+      n => callout-box(
+        header: if title == [] or title == "" {
+          [#header #n]
+        } else {
+          [#header #n: #title]
+        },
+        color: color,
+        body,
+      )
+    }
   },
   label: label,
   supplement: supplement,
